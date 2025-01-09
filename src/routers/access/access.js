@@ -1,24 +1,24 @@
 const express = require("express");
-const accessController = require("../../controllers/access.controller");
+const AccessController = require("../../controllers/access.controller");
 const asyncHandler = require("../../helpers/asyncHandler");
 const { authentication } = require("../../auth/authUtils");
 const Router = express.Router();
 
 // API đăng ký.
-Router.route("/signup").post(asyncHandler(accessController.signUp));
+Router.route("/signup").post(asyncHandler(AccessController.signUp));
 
-Router.route("/login").post(asyncHandler(accessController.login));
+Router.route("/login").post(asyncHandler(AccessController.login));
 
 // authentication
 
 Router.use(authentication);
 
 // API đăng xuất.
-Router.route("/logout").post(asyncHandler(accessController.logout));
+Router.route("/logout").post(asyncHandler(AccessController.logout));
 
 // API làm mới token.
 Router.route("/refresh-token").post(
-  asyncHandler(accessController.handleRefresshToken)
+  asyncHandler(AccessController.handleRefresshToken)
 );
 
 const ACCESS = Router;

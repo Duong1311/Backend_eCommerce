@@ -47,4 +47,26 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3
     "password": "abc123456"
 }
 
+###create product
+POST {{url_dev}}/product/create-product
+Content-Type: application/json
+x-api-key: 4586f0b5802b28d53085e740548aa7137d0585816cd9dc34efefc90a7afe21b1824b30a1664a3cc1890305aa41f38a4391267fcd543aa344a3e12809126b5275
+x-client-id: 677b7587f147476e86fff2b4
+authorization: 
+
+{
+"product_name" : "New Jeans",
+"product_description" : "High-quality denim jeans",
+"product_price" : 50,
+"product_shop" : "63f9a7ba14f7b2f117dc63dd",
+"product_type" : "Clothing",
+"product_thumb" : "product_thumb",
+"product_quantity": 5,
+"product_attributes" : {
+"brand": "Levi.s",
+"size": "L",
+"material": "Denim"
+}
+}
+
 

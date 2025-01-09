@@ -1,7 +1,7 @@
 const accessService = require("../services/access.service");
 const { CREATED, OK, SuccessResponse } = require("../core/success.response");
 
-const accessController = {
+const AccessController = {
   handleRefresshToken: async (req, res, next) => {
     const result = await accessService.handleRefresshToken(
       req.body.refreshToken
@@ -37,4 +37,4 @@ const accessController = {
   },
 };
 
-module.exports = accessController;
+module.exports = AccessController;
