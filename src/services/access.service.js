@@ -31,7 +31,8 @@ const accessService = {
       await KeyTokenService.deleteKeyById(id);
       throw new ForbiddenError("Something went wrong !! Please login again");
     }
-    //Trường hợp refreshToken đang được sử dụng
+
+    //Trường hợp refreshToken hợp lệ đang được sử dụng
 
     const holderToken = await KeyTokenService.findByRefreshToken(refreshToken);
     if (!holderToken) {
@@ -62,7 +63,7 @@ const accessService = {
       },
     });
     return {
-      user: { userId: id, email },
+      user: { userId: id, email: email },
       tokens,
     };
   },
