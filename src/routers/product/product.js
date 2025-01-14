@@ -4,7 +4,7 @@ const { authentication } = require("../../auth/authUtils");
 const ProductController = require("../../controllers/product.controller");
 const Router = express.Router();
 
-// Router.use(authentication);
+Router.use(authentication);
 
 Router.route("/create-product").post(
   asyncHandler(ProductController.createProduct)
