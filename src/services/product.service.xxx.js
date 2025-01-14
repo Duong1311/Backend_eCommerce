@@ -11,19 +11,21 @@ class ProductFactory {
   /*
     type: 'Clothing' | 'Electronic'
     payload
-    
+    throw new BadRequestError(`Invalid product type ${type}`);
     */
-  static createProduct(type, payload) {
-    switch (type) {
-      case "Clothing":
-        return new Clothing(payload).createProduct();
-      case "Electronics":
-        return new Electronic(payload).createProduct();
-      case "Furniture":
-        return new Furniture(payload).createProduct();
-      default:
-        throw new BadRequestError(`Invalid product type ${type}`);
-    }
+
+  static productRegistry = {};
+
+  static registerProductType(type, classRef) {
+    ProductFactory.productRegistry[type] = classRef;
+  }
+  static async createProduct(type, payload) {
+    const productClass = ProductFactory.productRegistry[type];
+
+    if (!productClass)
+      throw new BadRequestError(`Invalid product type ${type}`);
+
+    return new productClass(payload).createProduct();
   }
 }
 
@@ -108,5 +110,10 @@ class Furniture extends Product {
     return newProduct;
   }
 }
+
+// register product types
+ProductFactory.registerProductType("Clothing", Clothing);
+ProductFactory.registerProductType("Electronics", Electronic);
+ProductFactory.registerProductType("Furniture", Furniture);
 
 module.exports = ProductFactory;

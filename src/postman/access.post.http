@@ -58,7 +58,7 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3
 "product_name" : "Iphone 16",
 "product_description" : "High-quality denim jeans",
 "product_price" : 510,
-"product_type" : "Electronics",
+"product_type" : "Furniture",
 "product_thumb" : "product_thumb",
 "product_quantity": 5,
 "product_attributes" : {

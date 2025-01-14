@@ -50,6 +50,18 @@ const clothingSchema = new mongoose.Schema(
   }
 );
 
+const furnitureSchema = new mongoose.Schema(
+  {
+    band: { type: String, require: true },
+    size: { type: String, require: true },
+    material: String,
+  },
+  {
+    timestamps: true,
+    collection: "Furnitures",
+  }
+);
+
 //Export the model
 // module.exports = mongoose.model(DOCUMENT_NAME, productSchema);
 
@@ -57,4 +69,5 @@ module.exports = {
   product: mongoose.model(DOCUMENT_NAME, productSchema),
   electronic: mongoose.model("Electronic", electronicSchema),
   clothing: mongoose.model("Clothing", clothingSchema),
+  furniture: mongoose.model("Furniture", furnitureSchema),
 };
