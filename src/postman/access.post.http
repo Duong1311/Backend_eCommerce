@@ -55,7 +55,7 @@ x-client-id: 677b7587f147476e86fff2b4
 authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3NmU4NmZmZjJiNCIsInJvbGUiOlsiU0hPUCJdLCJlbWFpbCI6ImR1b25nQGdtYWlsLmNvbSIsImlhdCI6MTczNjg2MjU5OCwiZXhwIjoxNzM3MDM1Mzk4fQ.ldQ-loXFoApKmlGp-Ez02Vm7d3cYFPoVbG7LvwMrl_k
 
 {
-"product_name" : "Iphone 16",
+"product_name" : "Iphone 17",
 "product_description" : "High-quality denim jeans",
 "product_price" : 510,
 "product_type" : "Furniture",
@@ -67,5 +67,27 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3
 "color": "Denim"
 }
 }
+
+### get all draft product
+GET {{url_dev}}/product/drafts/all
+Content-Type: application/json
+x-api-key: 4586f0b5802b28d53085e740548aa7137d0585816cd9dc34efefc90a7afe21b1824b30a1664a3cc1890305aa41f38a4391267fcd543aa344a3e12809126b5275
+x-client-id: 677b7587f147476e86fff2b4
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3NmU4NmZmZjJiNCIsInJvbGUiOlsiU0hPUCJdLCJlbWFpbCI6ImR1b25nQGdtYWlsLmNvbSIsImlhdCI6MTczNjg2MjU5OCwiZXhwIjoxNzM3MDM1Mzk4fQ.ldQ-loXFoApKmlGp-Ez02Vm7d3cYFPoVbG7LvwMrl_k
+
+### get all public product
+GET {{url_dev}}/product/public/all
+Content-Type: application/json
+x-api-key: 4586f0b5802b28d53085e740548aa7137d0585816cd9dc34efefc90a7afe21b1824b30a1664a3cc1890305aa41f38a4391267fcd543aa344a3e12809126b5275
+x-client-id: 677b7587f147476e86fff2b4
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3NmU4NmZmZjJiNCIsInJvbGUiOlsiU0hPUCJdLCJlbWFpbCI6ImR1b25nQGdtYWlsLmNvbSIsImlhdCI6MTczNjg2MjU5OCwiZXhwIjoxNzM3MDM1Mzk4fQ.ldQ-loXFoApKmlGp-Ez02Vm7d3cYFPoVbG7LvwMrl_k
+
+
+### public product
+POST {{url_dev}}/product/public/6787940a2718575e43770934
+Content-Type: application/json
+x-api-key: 4586f0b5802b28d53085e740548aa7137d0585816cd9dc34efefc90a7afe21b1824b30a1664a3cc1890305aa41f38a4391267fcd543aa344a3e12809126b5275
+x-client-id: 677b7587f147476e86fff2b4
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3NmU4NmZmZjJiNCIsInJvbGUiOlsiU0hPUCJdLCJlbWFpbCI6ImR1b25nQGdtYWlsLmNvbSIsImlhdCI6MTczNjg2MjU5OCwiZXhwIjoxNzM3MDM1Mzk4fQ.ldQ-loXFoApKmlGp-Ez02Vm7d3cYFPoVbG7LvwMrl_k
 
 

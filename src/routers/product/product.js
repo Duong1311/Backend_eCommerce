@@ -4,10 +4,25 @@ const { authentication } = require("../../auth/authUtils");
 const ProductController = require("../../controllers/product.controller");
 const Router = express.Router();
 
+//search products
+Router.route("/search").get(asyncHandler(ProductController.searchProducts));
+
 Router.use(authentication);
 
 Router.route("/create-product").post(
   asyncHandler(ProductController.createProduct)
+);
+
+Router.route("/public/:id").post(asyncHandler(ProductController.publicProduct));
+Router.route("/unpublic/:id").post(
+  asyncHandler(ProductController.unPublicProduct)
+);
+// QUERY //
+Router.route("/drafts/all").get(
+  asyncHandler(ProductController.getAllDraftForShop)
+);
+Router.route("/public/all").get(
+  asyncHandler(ProductController.getAllPublicForShop)
 );
 
 const PRODUCT = Router;

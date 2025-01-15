@@ -1,3 +1,4 @@
+const { find } = require("lodash");
 const { BadRequestError } = require("../core/error.response");
 const {
   product,
@@ -5,6 +6,13 @@ const {
   electronic,
   furniture,
 } = require("../models/product.model");
+const {
+  findAllDraftsForShop,
+  publicProductByShop,
+  findAllPublicForShop,
+  unPublicProductByShop,
+  searchProductsByUser,
+} = require("../models/respositories/product_repo");
 
 // define Factory class to create product
 class ProductFactory {
@@ -26,6 +34,28 @@ class ProductFactory {
       throw new BadRequestError(`Invalid product type ${type}`);
 
     return new productClass(payload).createProduct();
+  }
+  // PUT //
+  static async publicProductByShop({ product_shop, product_id }) {
+    return await publicProductByShop({ product_shop, product_id });
+  }
+  static async unPublicProductByShop({ product_shop, product_id }) {
+    return await unPublicProductByShop({ product_shop, product_id });
+  }
+  // END PUT //
+
+  // query
+  static async findAllDraftsForShop({ product_shop, limit = 50, skip = 0 }) {
+    const query = { product_shop, isDraft: true };
+    return await findAllDraftsForShop({ query, limit, skip });
+  }
+  static async findAllPublicForShop({ product_shop, limit = 50, skip = 0 }) {
+    const query = { product_shop, isPublic: true };
+    return await findAllPublicForShop({ query, limit, skip });
+  }
+
+  static async searchProducts({ keySearch }) {
+    return await searchProductsByUser({ keySearch });
   }
 }
 
