@@ -21,6 +21,20 @@ const ProductController = {
       }),
     }).send(res);
   },
+  // update product
+  updateProduct: async (req, res, next) => {
+    new SuccessResponse({
+      message: "updateProduct success",
+      metadata: await ProductServiceV2.updateProduct(
+        req.body.product_type,
+        req.params.product_id,
+        {
+          ...req.body,
+          product_shop: req.user.id,
+        }
+      ),
+    }).send(res);
+  },
 
   publicProduct: async (req, res, next) => {
     new SuccessResponse({

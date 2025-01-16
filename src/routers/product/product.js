@@ -14,6 +14,9 @@ Router.use(authentication);
 Router.route("/create-product").post(
   asyncHandler(ProductController.createProduct)
 );
+Router.route("/update-product/:product_id").patch(
+  asyncHandler(ProductController.updateProduct)
+);
 
 Router.route("/public/:id").post(asyncHandler(ProductController.publicProduct));
 Router.route("/unpublic/:id").post(

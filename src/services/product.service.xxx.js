@@ -13,7 +13,13 @@ const {
   searchProductsByUser,
   findAllProducts,
   findProduct,
+  updateProductById,
 } = require("../models/respositories/product_repo");
+const {
+  removeUndefined,
+  updateNestedObjectParse,
+  removeUndefinedV2,
+} = require("../utils");
 
 // define Factory class to create product
 class ProductFactory {
@@ -36,11 +42,11 @@ class ProductFactory {
     return new productClass(payload).createProduct();
   }
 
-  static async updateProduct(type, payload) {
+  static async updateProduct(type, product_id, payload) {
     const productClass = ProductFactory.productRegistry[type];
     if (!productClass)
       throw new BadRequestError(`Invalid product type ${type}`);
-    return new productClass(payload).updateProduct();
+    return new productClass(payload).updateProduct(product_id);
   }
   // PUT //
   static async publicProductByShop({ product_shop, product_id }) {
@@ -110,6 +116,10 @@ class Product {
   async createProduct(product_id) {
     return await product.create({ ...this, _id: product_id });
   }
+  // update
+  async updateProduct(product_id, bodyUpdate) {
+    return await updateProductById({ product_id, bodyUpdate, model: product });
+  }
 }
 
 //define sub class for different product types like clothing, electronic etc
@@ -128,7 +138,32 @@ class Clothing extends Product {
 
     return newProduct;
   }
+  async updateProduct(product_id) {
+    /**
+     1. remove attr has null, underfined value
+     2. Check xem update o dau
+     */
+    //1
+    const objectParams = removeUndefinedV2(this);
+    // console.log(objectParams);
+    //2
+    if (objectParams.product_attributes) {
+      //update child
+      await updateProductById({
+        product_id,
+        bodyUpdate: updateNestedObjectParse(objectParams.product_attributes),
+        model: clothing,
+      });
+    }
+
+    const updateProduct = await super.updateProduct(
+      product_id,
+      updateNestedObjectParse(objectParams)
+    );
+    return updateProduct;
+  }
 }
+
 // define sub class for electronic product
 
 class Electronic extends Product {

@@ -52,13 +52,13 @@ POST {{url_dev}}/product/create-product
 Content-Type: application/json
 x-api-key: 4586f0b5802b28d53085e740548aa7137d0585816cd9dc34efefc90a7afe21b1824b30a1664a3cc1890305aa41f38a4391267fcd543aa344a3e12809126b5275
 x-client-id: 677b7587f147476e86fff2b4
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3NmU4NmZmZjJiNCIsInJvbGUiOlsiU0hPUCJdLCJlbWFpbCI6ImR1b25nQGdtYWlsLmNvbSIsImlhdCI6MTczNjg2MjU5OCwiZXhwIjoxNzM3MDM1Mzk4fQ.ldQ-loXFoApKmlGp-Ez02Vm7d3cYFPoVbG7LvwMrl_k
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2I3NTg3ZjE0NzQ3NmU4NmZmZjJiNCIsInJvbGUiOlsiU0hPUCJdLCJlbWFpbCI6ImR1b25nQGdtYWlsLmNvbSIsImlhdCI6MTczNzAzNzgxNywiZXhwIjoxNzM3MjEwNjE3fQ.CuZ5alM9OxgS3iHdhVrvzFoHE6ySbirwFCr_KE1Cta4
 
 {
 "product_name" : "Iphone 17",
 "product_description" : "High-quality denim jeans",
 "product_price" : 510,
-"product_type" : "Furniture",
+"product_type" : "Clothing",
 "product_thumb" : "product_thumb",
 "product_quantity": 5,
 "product_attributes" : {

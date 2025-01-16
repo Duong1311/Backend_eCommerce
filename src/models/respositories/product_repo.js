@@ -71,6 +71,18 @@ const findAllProducts = async ({ limit, sort, page, filter, select }) => {
   return { products, totalPage };
 };
 
+const updateProductById = async ({
+  product_id,
+  bodyUpdate,
+  model,
+  isNew = true,
+}) => {
+  console.log(bodyUpdate);
+  return await model.findByIdAndUpdate(product_id, bodyUpdate, {
+    new: isNew,
+  });
+};
+
 const queryProduct = async ({ query, limit, skip }) => {
   return await product
     .find(query)
@@ -90,4 +102,5 @@ module.exports = {
   searchProductsByUser,
   findAllProducts,
   findProduct,
+  updateProductById,
 };
