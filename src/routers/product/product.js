@@ -6,6 +6,8 @@ const Router = express.Router();
 
 //search products
 Router.route("/search").get(asyncHandler(ProductController.searchProducts));
+Router.route("").get(asyncHandler(ProductController.getAllProducts));
+Router.route("/:product_id").get(asyncHandler(ProductController.findProduct));
 
 Router.use(authentication);
 
