@@ -58,6 +58,7 @@ const authentication = asyncHandler(async (req, res, next) => {
         .status(410)
         .json({ message: "Unauthorized! (Token is expired, need refresh)" });
     }
+    return res.status(401).json({ message: "Unauthorized!" });
   }
 });
 
