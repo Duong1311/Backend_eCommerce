@@ -8,7 +8,6 @@
     6 - Cancel discount code [User]
  */
 
-const { filter } = require("lodash");
 const { BadRequestError, NotFoundError } = require("../core/error.response");
 const discountModel = require("../models/discount.model");
 const { convertToObjectId } = require("../utils");

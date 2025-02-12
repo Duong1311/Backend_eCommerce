@@ -77,7 +77,7 @@ const updateProductById = async ({
   model,
   isNew = true,
 }) => {
-  console.log(bodyUpdate);
+  // console.log(bodyUpdate);
   return await model.findByIdAndUpdate(product_id, bodyUpdate, {
     new: isNew,
   });
