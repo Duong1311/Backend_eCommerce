@@ -1,7 +1,12 @@
-const _ = require("lodash");
+const { pick, pickBy, isObject, transform } = require("lodash");
+const { Types } = require("mongoose");
+
+const convertToObjectId = (id) => {
+  return id ? new Types.ObjectId(id) : null;
+};
 
 const getInforData = ({ fileds = [], obj = {} }) => {
-  return _.pick(obj, fileds);
+  return pick(obj, fileds);
 };
 const getSelectData = (select = []) => {
   return Object.fromEntries(select.map((item) => [item, 1]));
@@ -10,13 +15,13 @@ const unGetSelectData = (unSelect = []) => {
   return Object.fromEntries(unSelect.map((item) => [item, 0]));
 };
 const removeUndefined = (obj) => {
-  return _.pickBy(obj, (value) => value !== null);
+  return pickBy(obj, (value) => value !== null);
 };
 const removeUndefinedV2 = (obj) => {
-  if (!_.isObject(obj)) return obj;
+  if (!isObject(obj)) return obj;
 
-  return _.transform(obj, (result, value, key) => {
-    if (_.isObject(value)) {
+  return transform(obj, (result, value, key) => {
+    if (isObject(value)) {
       value = removeUndefined(value);
     }
     if (value !== undefined && value !== null) {
@@ -49,4 +54,5 @@ module.exports = {
   removeUndefined,
   updateNestedObjectParse,
   removeUndefinedV2,
+  convertToObjectId,
 };
