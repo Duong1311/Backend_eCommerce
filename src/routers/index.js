@@ -4,6 +4,7 @@ const { apiKey, permission } = require("../auth/checkAuth");
 const PRODUCT = require("./product/product");
 const DISCOUNT = require("./discount/discount");
 const CART = require("./cart/cart");
+const CHECKOUT = require("./checkout/checkout");
 const Router = express.Router();
 
 /** Check APIs v1/status */
@@ -26,6 +27,8 @@ Router.use("/product", PRODUCT);
 Router.use("/discount", DISCOUNT);
 
 Router.use("/cart", CART);
+
+Router.use("/checkout", CHECKOUT);
 
 const APIs_V1 = Router;
 
