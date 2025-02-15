@@ -3,6 +3,7 @@ const ACCESS = require("./access/access");
 const { apiKey, permission } = require("../auth/checkAuth");
 const PRODUCT = require("./product/product");
 const DISCOUNT = require("./discount/discount");
+const CART = require("./cart/cart");
 const Router = express.Router();
 
 /** Check APIs v1/status */
@@ -23,6 +24,8 @@ Router.use("/shop", ACCESS);
 Router.use("/product", PRODUCT);
 
 Router.use("/discount", DISCOUNT);
+
+Router.use("/cart", CART);
 
 const APIs_V1 = Router;
 
