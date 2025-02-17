@@ -1,9 +1,11 @@
 const { BadRequestError } = require("../core/error.response");
+const orderModel = require("../models/order.model");
 const { findCartById } = require("../models/respositories/cart.repo");
 const {
   checkProductByServer,
 } = require("../models/respositories/product_repo");
 const { getAmountDiscount } = require("./discount.service");
+const { acquireLock, releaseLock } = require("./redis.service");
 
 const CheckoutService = {
   /*
@@ -111,6 +113,52 @@ const CheckoutService = {
       shop_order_ids_new,
       checkout_order,
     };
+  },
+
+  orderByUser: async ({
+    shop_order_ids,
+    cartId,
+    userId,
+    user_address = {},
+    user_payment = {},
+  }) => {
+    const { shop_order_ids_new, checkout_order } = await this.checkoutReview({
+      cartId,
+      userId,
+      shop_order_ids,
+    });
+
+    //check lai so luong san pham xem co vuot ton kho khong
+    const products = shop_order_ids_new.flatMap((order) => order.item_products);
+    console.log(products);
+    const acpuireProduct = [];
+    for (let i = 0; i < products.length; i++) {
+      const { productId, quantity } = products[i];
+      const keyLock = await acquireLock(productId, quantity, cartId);
+      acpuireProduct.push(keyLock ? true : false);
+      if (keyLock) {
+        await releaseLock(keyLock);
+      }
+    }
+
+    // neu co san pham vuot ton kho
+    if (acpuireProduct.includes(false)) {
+      throw new BadRequestError("Product out of stock");
+    }
+
+    const newOrder = await orderModel.create({
+      order_userId: userId,
+      order_checkout: checkout_order,
+      order_shipping: user_address,
+      order_payment: user_payment,
+      order_products: shop_order_ids_new,
+    });
+
+    // sau khi tao order thanh cong, xoa cart
+    if (newOrder) {
+      // xoa cart
+    }
+    return newOrder;
   },
 };
 

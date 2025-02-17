@@ -168,7 +168,7 @@ const DiscountService = {
         limit: limit,
         page: page,
         sort: "ctime",
-        select: ["product_name"],
+        select: ["product_name", "product_price", "product_shop"],
       });
     }
     if (discount_apply_for === "specific") {
@@ -182,7 +182,7 @@ const DiscountService = {
         limit: limit,
         page: page,
         sort: "ctime",
-        select: ["product_name"],
+        select: ["product_name", "product_price", "product_shop"],
       });
     }
     return products;
