@@ -1,3 +1,4 @@
+const { get } = require("lodash");
 const { BadRequestError } = require("../core/error.response");
 const orderModel = require("../models/order.model");
 const { findCartById } = require("../models/respositories/cart.repo");
@@ -160,6 +161,41 @@ const CheckoutService = {
     }
     return newOrder;
   },
+
+  /**
+   * Query order by user [User]
+   */
+  getOrderByUser: async ({ userId, page, limit }) => {
+    // const orders = await orderModel
+    //   .find({ order_userId: userId })
+    //   .limit(limit)
+    //   .skip(page * limit)
+    //   .lean();
+    // return orders;
+  },
+  /**
+   * Get order by id [User]
+   */
+  getOneOrderById: async ({ orderId }) => {
+    // const order = await orderModel.findOne({ _id: orderId }).lean();
+    // return order;
+  },
+  /**
+   * Cancel order by id [User]
+   */
+
+  cancelOrderByUser: async ({ orderId }) => {
+    // const order = await orderModel.findOneAndUpdate(
+    //   { _id: orderId },
+    //   { order_status: "cancel" },
+    //   { new: true }
+    // );
+    // return order;
+  },
+  /**
+   * Update order status [Admin] [Shop]
+   */
+  updateOrderStatus: async ({ orderId, status }) => {},
 };
 
 module.exports = CheckoutService;

@@ -3,7 +3,6 @@ const express = require("express");
 const { default: helmet } = require("helmet");
 const morgan = require("morgan");
 const APIs_V1 = require("./routers");
-const errorHandlingMiddleware = require("./middlewares/errorHandlingMiddleware");
 require("dotenv").config();
 const app = express();
 // init middleware
